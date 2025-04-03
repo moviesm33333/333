@@ -18,11 +18,16 @@ const client = new TelegramClient(stringSession, apiId, apiHash, { connectionRet
 let dialogueMode = false; // Flag to track dialogue mode
 let conversationContext = []; // Array to store conversation context
 
+// Versioning
+const version = "1.0";
+const lastUpdate = new Date().toLocaleString();
+
 (async () => {
   await client.start({
     botAuthToken: botToken,
   });
   console.log('Bot started');
+  console.log(`Version: ${version}, Last updated: ${lastUpdate}`);
 
   client.addEventHandler(start(client), { pattern: /^\/start/ });
   client.addEventHandler(register(client), { pattern: /^register$/ });
