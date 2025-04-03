@@ -31,10 +31,13 @@ exports.handleMessage = (client) => async (event) => {
     response.data.choices.forEach(async (choice) => {
       let aiResponse = choice.message.content;
 
+      console.log("Full AI Response Length:", aiResponse.length); // Debugging: Log full response length
+
       // Split the message into chunks of 4096 characters
       const chunkSize = 4096;
       for (let i = 0; i < aiResponse.length; i += chunkSize) {
         const chunk = aiResponse.substring(i, i + chunkSize);
+        console.log("Chunk Length:", chunk.length); // Debugging: Log chunk length
         await client.sendMessage(event.message.peerId, { message: chunk });
       }
     });
