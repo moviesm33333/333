@@ -7,11 +7,12 @@ exports.start = (client) => async (event) => {
     const keyboard = {
       rows: [
         [
-          { text: "Задать вопрос нейросети", callbackData: 'ai_question' }
+          { text: "Вопрос - ответ", callbackData: 'ai_question' },
+          { text: "Диалог", callbackData: 'dialogue' }
         ]
       ]
     };
-    await client.sendMessage(event.message.peerId, { message: "Что вы хотите сделать?", buttons: keyboard });
+    await client.sendMessage(event.message.peerId, { message: "Выберите режим работы бота:", buttons: keyboard });
   } else {
     const keyboard = {
       rows: [
